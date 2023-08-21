@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/main}">
+<head>
+    <meta charset="UTF-8">
+    <title>Product - Index</title>
+</head>
+<body>
+<div class="row mb-2" layout:fragment="breadcrumb">
+    <div class="col-sm-6">
+        <h1 class="m-0">Index Product</h1>
+    </div>
+    <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item active">Product</li>
+        </ol>
+    </div>
+</div>
+
+<div class="row" layout:fragment="content">
+    <div class="col-lg-12 col-md-12 col-sm-12">
+        <div class="card">
+            <div class="card-header bg-success">
+                <h3 class="card-title">Dosen</h3>
+
+                <div class="card-tools">
+                    <div class="input-group input-group-sm" style="width: 200px;">
+                        <input type="text" name="table-search" class="form-control float-right" placeholder="Search">
+
+                        <div class="input-group-append">
+                            <button type="submit" class="btn btn-default">
+                                <i class="fas fa-search"></i>
+                            </button>
+                            <a th:href="@{~/product/add}" id="btn-add" class="btn btn-primary">
+                                <i class="fas fa-plus"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+    <!-- membuat table -->
+    <div class="card-body">
+        <table id="table-data" class="table">
+            <!-- table header -->
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Kode</th>
+                <th>Nama</th>
+                <th>Kategory</th>
+                <th>Keterangan</th>
+                <th>Harga</th>
+                <th>Stock</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- data yang akan di looping -->
+            <tr th:each="product :${listProduct}">
+                <td th:text="${product.id}"></td>
+                <td th:text="${product.code}"></td>
+                <td th:text="${product.name}"></td>
+                <td th:text="${product.category}"></td>
+                <td th:text="${product.description}"></td>
+                <td>Rp. <strong th:text="${product.price}"></strong></td>
+                <td><strong th:text="${product.stock}"></strong> pcs</td>
+
+                <td>
+                    <a th:href="@{~/product/edit/{id}(id=${product.id})}">Edit</a>
+                </td>
+            </tr>
+            <!-- menampilkan jumlah data -->
+            <tr>
+                <td colspan="6">Jumlah Data</td>
+                <td><strong th:text="${jmlData}"></strong> Item</td>
+            </tr>
+        </table>
+    </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

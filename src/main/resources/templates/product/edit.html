@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Edit Products</h1>
+<form th:action="@{~/product/update}" method="post">
+  <label>ID</label> <br>
+  <input type="text" name="id" id="id" th:value="${product.id}"> <br/>
+
+  <label>Kode</label> <br>
+  <input type="text" name="code" id="code" th:value="${product.code}"> <br/>
+
+  <label>Nama Product</label> <br>
+  <input type="text" name="name" id="name" th:value="${product.name}">  <br/>
+
+  <label>Kategory</label> <br>
+  <input type="text" name="category" id="category" th:value="${product.category}"> <br/>
+
+  <label>Keterangan</label> <br>
+  <textarea name="description" id="description" rows="5" cols="20"> </textarea><br/>
+
+  <label>Harga</label> <br>
+  <input type="text" name="price" id="price" th:value="${product.price}"> <br/>
+
+  <label>Stock</label> <br>
+  <input type="text" name="stock" id="stock" th:value="${product.stock}"> <br/>
+
+  <button type="submit">Simpan</button>
+</form>
+</body>
+</html>
