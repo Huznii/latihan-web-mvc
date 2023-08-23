@@ -1,34 +1,72 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/main}">>
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Product - Edit</title>
 </head>
 <body>
-<h1>Edit Products</h1>
-<form th:action="@{~/product/update}" method="post">
-  <label>ID</label> <br>
-  <input type="text" name="id" id="id" th:value="${product.id}"> <br/>
+<div class="row mb-2" layout:fragment="breadcrumb">
+  <div class="col-sm-6">
+    <h1 class="m-0">EditProduct</h1>
+  </div>
+  <div class="col-sm-6">
+    <ol class="breadcrumb float-sm-right">
+      <li class="breadcrumb-item"><a href="#">Home</a></li>
+      <li class="breadcrumb-item active">Edit Product</li>
+    </ol>
+  </div>
+</div>
+<div class="row" layout:fragment="content">
+  <!-- left column -->
+  <div class="col-lg-12 col-md-12 col-sm-12">
+    <!-- general form elements -->
+    <div class="card card-primary">
+      <div class="card-header">
+        <h3 class="card-title">Edit Product</h3>
+      </div>
+      <!-- /.card-header -->
 
-  <label>Kode</label> <br>
-  <input type="text" name="code" id="code" th:value="${product.code}"> <br/>
+      <form th:action="@{~/product/update}" method="post" >
+        <!-- form start -->
+        <div class="card-body">
+          <div class="form-group">
+            <label for="id">ID Product</label>
+            <input type="text" class="form-control" name="id" id="id" placeholder="Enter Id" th:value="${product.id}">
+          </div>
+          <div class="form-group">
+            <label for="code">Kode Product</label>
+            <input type="text" class="form-control" name="code" id="code" placeholder="Enter Code" th:value="${product.code}">
+          </div>
+          <div class="form-group">
+            <label for="name">Nama Product</label>
+            <input type="text" class="form-control" name="name" id="name" placeholder="Enter Name" th:value="${product.name}">
+          </div>
+          <div class="form-group">
+            <label for="category">Kategori</label>
+            <input type="text" class="form-control" name="category" id="category" placeholder="Category" th:value="${product.category}">
+          </div>
+          <div class="form-group">
+            <label for="description">Keterangan</label>
+            <textarea type="text" class="form-control" name="description" id="description" placeholder="Desc" th:value="${product.description}"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="price">Harga</label>
+            <input type="text" class="form-control" name="price" id="price" placeholder="price" th:value="${product.price}">
+          </div>
+          <div class="form-group">
+            <label for="stock">Stok</label>
+            <input type="text" class="form-control" name="stock" id="stock" placeholder="Stock" th:value="${product.stock}">
+          </div>
+        </div>
+        <!-- /.card-body -->
 
-  <label>Nama Product</label> <br>
-  <input type="text" name="name" id="name" th:value="${product.name}">  <br/>
-
-  <label>Kategory</label> <br>
-  <input type="text" name="category" id="category" th:value="${product.category}"> <br/>
-
-  <label>Keterangan</label> <br>
-  <textarea name="description" id="description" rows="5" cols="20"> </textarea><br/>
-
-  <label>Harga</label> <br>
-  <input type="text" name="price" id="price" th:value="${product.price}"> <br/>
-
-  <label>Stock</label> <br>
-  <input type="text" name="stock" id="stock" th:value="${product.stock}"> <br/>
-
-  <button type="submit">Simpan</button>
-</form>
+        <div class="card-footer">
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
 </body>
 </html>

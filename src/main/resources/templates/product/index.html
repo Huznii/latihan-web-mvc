@@ -21,8 +21,8 @@
 <div class="row" layout:fragment="content">
     <div class="col-lg-12 col-md-12 col-sm-12">
         <div class="card">
-            <div class="card-header bg-success">
-                <h3 class="card-title">Dosen</h3>
+            <div class="card-header bg-primary">
+                <h3 class="card-title">Product</h3>
 
                 <div class="card-tools">
                     <div class="input-group input-group-sm" style="width: 200px;">
@@ -53,6 +53,7 @@
                 <th>Keterangan</th>
                 <th>Harga</th>
                 <th>Stock</th>
+                <th>Action</th>
             </tr>
             </thead>
             <tbody>
@@ -67,7 +68,15 @@
                 <td><strong th:text="${product.stock}"></strong> pcs</td>
 
                 <td>
-                    <a th:href="@{~/product/edit/{id}(id=${product.id})}">Edit</a>
+                    <a th:href="@{~/product/edit/{id}(id=${product.id})}" class="btn btn-xs btn-warning btn-edit">
+                    <i class="fas fa-edit"></i>
+                    </a>
+                    <form class="d-inline" th:action="@{~/product/delete}" method="post"  onclick="return confirm('Apakah kamu yakin akan dihapus?')">
+                        <input type="hidden" name="id" th:value="${product.id}">
+                        <button type="submit" class="btn btn-xs btn-danger">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </form>
                 </td>
             </tr>
             <!-- menampilkan jumlah data -->

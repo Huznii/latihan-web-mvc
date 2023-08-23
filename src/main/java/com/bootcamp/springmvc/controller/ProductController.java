@@ -39,7 +39,7 @@ public class ProductController {
 
     @GetMapping("add")
     public ModelAndView add() {
-        return new ModelAndView("product/add.html");
+        return new ModelAndView("product/add");
     }
 
     @PostMapping("/save")
@@ -63,6 +63,17 @@ public class ProductController {
     @PostMapping("/update")
     public ModelAndView update(@ModelAttribute ProductDto request) {
         this.service.update(request.getId(), request);
+        return new ModelAndView("redirect:/product");
+    }
+
+
+    @PostMapping("/delete")
+    public ModelAndView delete(@ModelAttribute ProductDto request) {
+        ProductEntity productDto = service.getById(request.getId());
+        if (productDto == null) {
+            return new ModelAndView("redirect:/product");
+        }
+        this.service.delete(request.getId());
         return new ModelAndView("redirect:/product");
     }
 }
